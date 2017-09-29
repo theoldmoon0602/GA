@@ -21,14 +21,14 @@ namespace GA1
             }
 
 
-            double[] fit_avgs = new double[N];
-            for (int i = 0; i < N; i++)
+            double[] fit_avgs = new double[M];
+            for (int i = 0; i < M; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 0; j < N; j++)
                 {
-                    fit_avgs[i] += results[i].fitnesses[j];
+                    fit_avgs[i] += results[j].fitnesses[i];
                 }
-                fit_avgs[i] /= M;
+                fit_avgs[i] /= N;
             }
             using (var sw = new System.IO.StreamWriter("fitness_avgs.csv"))
             {
@@ -118,7 +118,7 @@ namespace GA1
 
             // ellite selection
             //return new Phenotype[] { gen[gen.Length - 1], gen[gen.Length - 2] };
-            
+
             // roulette type selection
             double sum = 0;
             for (int i = 0; i < gen.Length; i++)
